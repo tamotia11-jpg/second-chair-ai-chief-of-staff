@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Second Chair">
+  <rect width="64" height="64" rx="10" fill="#07111f"/>
+  <path d="M19 24c0-6 5-10 12-10 6 0 10 2 14 6l-6 5c-2-2-5-3-8-3-3 0-5 1-5 3 0 6 22 2 22 15 0 7-6 11-15 11-8 0-14-3-18-8l7-5c3 4 7 5 11 5 4 0 7-1 7-3 0-6-21-2-21-16Z" fill="#fbfaf7"/>
+  <circle cx="50" cy="49" r="5" fill="#ff684f"/>
+</svg>
