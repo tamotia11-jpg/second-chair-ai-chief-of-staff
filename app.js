@@ -81,6 +81,21 @@ function encodeFormBody(record, formName) {
   }).toString();
 }
 
+function emailPayload(record) {
+  return Object.freeze({
+    _subject: "New Second Chair early access request",
+    _template: "table",
+    _replyto: record.email,
+    id: record.id,
+    name: record.name,
+    email: record.email,
+    timeSink: record.timeSink,
+    willingnessToPay: record.willingnessToPay,
+    referral: record.referral,
+    createdAt: record.createdAt,
+  });
+}
+
 export async function submitLead(record, options = {}) {
   const endpoint = options.endpoint ?? "/api/waitlist";
   if (!endpoint) {
@@ -91,17 +106,27 @@ export async function submitLead(record, options = {}) {
   const fetcher = options.fetcher ?? globalThis.fetch;
   const formName = options.formName ?? "early-access";
   const usesEncodedForm = options.format === "form";
+  const usesEmailService = options.format === "email";
   const response = await fetcher(endpoint, {
     method: "POST",
-    credentials: "same-origin",
+    credentials: usesEmailService ? "omit" : "same-origin",
     headers: {
       "Content-Type": usesEncodedForm ? "application/x-www-form-urlencoded" : "application/json",
+      ...(usesEmailService ? { Accept: "application/json" } : {}),
     },
-    body: usesEncodedForm ? encodeFormBody(record, formName) : JSON.stringify(record),
+    body: usesEncodedForm
+      ? encodeFormBody(record, formName)
+      : JSON.stringify(usesEmailService ? emailPayload(record) : record),
   });
   const result = await response.json().catch(() => ({}));
   if (!response.ok) {
     throw new Error(result.error || "We could not save that yet. Please try again.");
+  }
+  if (usesEmailService) {
+    if (result.success === false || result.success === "false") {
+      throw new Error(result.message || "We could not send that yet. Please try again.");
+    }
+    return Object.freeze({ success: true, status: "emailed" });
   }
   return Object.freeze(
     Object.keys(result).length > 0 ? result : { success: true, status: "created" },

@@ -19,11 +19,18 @@ function chooseSubmissionMode(form) {
   if (protocol === "file:") return "local";
   if (host === "localhost" || host === "127.0.0.1") return "api";
   if (host.endsWith(".netlify.app")) return "netlify";
-  return "local";
+  return "formsubmit";
 }
 
 function submissionOptions(form) {
   const mode = chooseSubmissionMode(form);
+  if (mode === "formsubmit") {
+    const endpoint = form.dataset.emailEndpoint ?? "https://formsubmit.co/ajax/atharvtamotia@gmail.com";
+    return Object.freeze({
+      endpoint,
+      format: "email",
+    });
+  }
   if (mode === "netlify") {
     return Object.freeze({
       endpoint: "/",
@@ -60,7 +67,8 @@ function showErrors(form, errors) {
 
 function successCopy(status) {
   if (status === "already-joined") return "You’re already on the list. We’ll be in touch with pilot details.";
-  if (status === "saved-locally") return "This browser saved your note, but it was not sent. Reply to the person who shared this page to join the pilot.";
+  if (status === "emailed") return "Your request was sent by email. We’ll be in touch with the next steps and concierge pilot details.";
+  if (status === "saved-locally") return "Saved in this browser for local testing. Use the public website to send the request by email.";
   return "You’re on the list. We’ll be in touch with the next steps and concierge pilot details.";
 }
 

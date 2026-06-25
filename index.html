@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Second Chair is a human-guided AI chief of staff for founders who want fewer loose ends and more time for important work.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co">
     <title>Second Chair — Get your week back</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
@@ -146,8 +147,11 @@
         </div>
 
         <div class="form-shell" data-reveal>
-          <form id="waitlist-form" name="early-access" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <form id="waitlist-form" name="early-access" method="POST" action="https://formsubmit.co/atharvtamotia@gmail.com" data-email-endpoint="https://formsubmit.co/ajax/atharvtamotia@gmail.com" data-netlify="true" netlify-honeypot="bot-field" novalidate>
             <input type="hidden" name="form-name" value="early-access">
+            <input type="hidden" name="_subject" value="New Second Chair early access request">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="https://tamotia11-jpg.github.io/second-chair-ai-chief-of-staff/thank-you">
             <input type="hidden" name="referral" value="">
             <p class="hidden-field" aria-hidden="true">
               <label>Do not fill this out if you are human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
@@ -176,7 +180,7 @@
             </fieldset>
             <button class="button button--primary submit-button" type="submit">Request early access</button>
             <p class="privacy-line">Validation only. No spam. Used only to evaluate pilot fit.</p>
-            <p class="local-note">Please do not include confidential information. Responses are retained for up to 180 days and are not sold or shared with ad networks. For deletion requests, contact the person who shared this page with you.</p>
+            <p class="local-note">Please do not include confidential information. Responses are submitted through FormSubmit to Atharv by email, retained for up to 180 days, and not sold or shared with ad networks. For deletion requests, email the same address that follows up with you.</p>
           </form>
           <div class="form-status form-status--success" id="form-status" role="status" tabindex="-1" hidden></div>
         </div>
