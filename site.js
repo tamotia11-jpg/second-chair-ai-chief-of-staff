@@ -25,7 +25,7 @@ function chooseSubmissionMode(form) {
 function submissionOptions(form) {
   const mode = chooseSubmissionMode(form);
   if (mode === "formsubmit") {
-    const endpoint = form.dataset.emailEndpoint ?? "https://formsubmit.co/ajax/atharvtamotia@gmail.com";
+    const endpoint = form.dataset.emailEndpoint ?? "https://formsubmit.co/ajax/5314e64e01876e4fc50536f4b2f70e33";
     return Object.freeze({
       endpoint,
       format: "email",
