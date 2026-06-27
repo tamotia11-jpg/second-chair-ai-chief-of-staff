@@ -233,6 +233,9 @@ nav a:hover { color: var(--blue); }
 .process-line span { display: block; color: var(--coral); font-family: var(--serif); font-size: clamp(3.3rem, 5vw, 5rem); line-height: 1; }
 .process-line strong { display: block; margin-top: .6rem; font-family: var(--serif); font-size: 1.65rem; font-weight: 400; }
 .process-line p { max-width: 15rem; color: #d0d5dc; font-size: .9rem; }
+.connector-note { max-width: 50rem; margin-top: 3.5rem; border-top: 1px solid rgb(255 255 255 / 18%); padding-top: 1.5rem; }
+.connector-note strong { display: block; color: white; font-size: 1rem; letter-spacing: .02em; }
+.connector-note p { margin: .65rem 0 0; color: #d0d5dc; font-size: .95rem; }
 .fit-list { border-left: 1px solid var(--blue); padding: 2rem 0 0 clamp(2rem, 3vw, 3rem); }
 .fit-list h3 { font-size: clamp(2.3rem, 3.5vw, 4rem); border-bottom: 2px solid var(--blue); padding-bottom: 1.5rem; }
 .fit-list ul { margin: 1.3rem 0 0; padding: 0; list-style: none; }
