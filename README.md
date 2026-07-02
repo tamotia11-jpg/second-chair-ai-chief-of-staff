@@ -1,35 +1,24 @@
 # Second Chair
 
-Second Chair is a human-guided AI chief-of-staff prototype for founders. This fork adds a native macOS workspace while preserving the original validation website.
+Second Chair is a Step 1 validation website for a human-guided AI chief of staff.
 
-## Native macOS app
+This public mirror now contains only the static GitHub Pages surface: the landing page, FormSubmit early-access capture, and supporting browser assets. The native macOS SwiftUI app experiment has been removed from this repository.
 
-The SwiftUI app includes:
+## Public Surface
 
-- a daily operating brief;
-- a persistent human approval queue;
-- business workstreams across lead generation, sales, marketing, operations, finance, and people;
-- an executive brief for decisions and exceptions;
-- a transparent connector map that distinguishes sandbox demonstrations from roadmap-only integrations.
+- `index.html` is the active validation landing page.
+- `styles.css`, `site.js`, and `app.js` provide the page styling and browser behavior.
+- `thank-you.html` handles the post-submit confirmation path.
+- `_headers`, `robots.txt`, and `favicon.svg` support the hosted static deployment.
 
-The current build uses local sample data. It does not send messages, launch ads, update marketplaces, move money, or mutate live CRM data.
+## Validation Boundary
 
-### Run
+Second Chair is still in Step 1 validation. The public site may collect early-access interest, but this repo does not ship production automation, live connector writes, billing, scheduling, messaging, ad launch, marketplace updates, CRM mutation, or a native desktop runtime.
 
-Requirements: macOS 14 or later and Swift 6.
+## Deployment
 
-```bash
-bash ./script/build_and_run.sh
-```
+The active public URL is:
 
-Use `bash ./script/build_and_run.sh --verify` to build, launch, and confirm the process is running. The Codex environment also exposes the same command as its Run action.
+`https://tamotia11-jpg.github.io/second-chair-ai-chief-of-staff/`
 
-### Test
-
-```bash
-swift test
-```
-
-## Validation website
-
-The original static landing page remains at the repository root in `index.html`, with its supporting CSS and JavaScript unchanged.
+Deployments are made by pushing the static files in this repository to GitHub Pages.
