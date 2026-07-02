@@ -66,10 +66,10 @@ function showErrors(form, errors) {
 }
 
 function successCopy(status) {
-  if (status === "already-joined") return "You’re already on the list. We’ll be in touch with pilot details.";
-  if (status === "emailed") return "Your request was sent by email. We’ll be in touch with the next steps and concierge pilot details.";
-  if (status === "saved-locally") return "Saved in this browser for local testing. Use the public website to send the request by email.";
-  return "You’re on the list. We’ll be in touch with the next steps and concierge pilot details.";
+  if (status === "already-joined") return "You’re already on the list. We’ll be in touch with Step 1 pilot-fit details.";
+  if (status === "emailed") return "Your request was sent by email. We’ll be in touch with Step 1 next steps and concierge pilot-fit details.";
+  if (status === "saved-locally") return "Saved in this browser for local testing. Use the public website to send the Step 1 request by email.";
+  return "You’re on the list. We’ll be in touch with Step 1 next steps and concierge pilot-fit details.";
 }
 
 function setStatus(region, modifier, title, message) {
