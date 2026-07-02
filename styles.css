@@ -271,6 +271,11 @@ input:focus, textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px r
 .submit-button { width: 100%; margin-top: .4rem; font-size: 1rem; }
 .privacy-line, .local-note { margin: 1rem 0 0; text-align: center; color: var(--muted); font-size: .8rem; }
 .local-note { font-size: .68rem; }
+.privacy-boundary { margin-top: 1rem; border: 1px solid var(--line); background: white; padding: 1.1rem 1.2rem; box-shadow: 0 16px 42px rgb(7 17 31 / 5%); }
+.privacy-boundary h3 { margin: 0 0 .75rem; font-size: 1rem; letter-spacing: -.01em; }
+.privacy-boundary ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .8rem; }
+.privacy-boundary li { color: #2e3744; font-size: .82rem; line-height: 1.5; }
+.privacy-boundary strong { color: var(--ink); }
 .form-status { margin-top: 1rem; border: 1px solid; padding: 1rem 1.2rem; display: grid; gap: .2rem; }
 .form-status[hidden] { display: none; }
 .form-status--success { border-color: var(--success); color: var(--success); }
@@ -327,7 +332,7 @@ footer > p { text-align: right; }
   .fit-list li { min-height: 86px; }
   .early-access { gap: 3rem; }
   .pilot-note { margin-top: 2.5rem; }
-  form { padding: 1.2rem; }
+  form, .privacy-boundary { padding: 1.2rem; }
   footer { align-items: flex-start; flex-direction: column; min-height: 230px; }
   footer > p { text-align: left; }
 }
