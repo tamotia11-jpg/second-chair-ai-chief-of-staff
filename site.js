@@ -1,4 +1,4 @@
-import { createLeadRecord, submitLead, validateWaitlist } from "./app.js";
+import { createLeadRecord, submitLead, validateWaitlist } from "./app.js?v=20260801-guided-form";
 
 document.documentElement.classList.add("js");
 
