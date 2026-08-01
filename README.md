@@ -38,8 +38,8 @@ Second Chair remains in Step 1 validation. The macOS app uses Manus for chat, re
 
 ## Deployment
 
-The active public URL is:
+The active public URL is `https://www.chair02.com/`.
 
-`https://tamotia11-jpg.github.io/second-chair-ai-chief-of-staff/`
-
-Deployments are made by pushing the static files in this repository to GitHub Pages.
+The static site is deployed to the Railway project and service `chair02-waitlist`.
+Production uploads must include `index.html`, `styles.css`, `site.js`, `app.js`,
+`thank-you.html`, and the supporting static assets from the repository root.

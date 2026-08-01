@@ -1,4 +1,13 @@
 const STORAGE_KEY = "second-chair-waitlist";
+const WORKFLOW_CHOICES = new Set([
+  "lead-research",
+  "sales",
+  "marketing",
+  "admin",
+  "finance-people-docs",
+  "reporting",
+]);
+const FREQUENCY_CHOICES = new Set(["daily", "weekly", "monthly", "quarterly"]);
 const PAYMENT_CHOICES = new Set(["yes", "maybe", "not-yet"]);
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -12,13 +21,21 @@ export function validateWaitlist(input) {
   const timeSink = clean(input.timeSink);
   const errors = {};
 
+  if (!WORKFLOW_CHOICES.has(input.workflowArea)) {
+    errors.workflowArea = "Choose the area that is closest to this workflow.";
+  }
+
+  if (!FREQUENCY_CHOICES.has(input.frequency)) {
+    errors.frequency = "Choose how often this workflow comes up.";
+  }
+
   if (!name) errors.name = "Please enter your name.";
   else if (name.length > 80) errors.name = "Keep your name under 80 characters.";
 
   if (!email || !EMAIL_PATTERN.test(email)) errors.email = "Please enter a valid work email.";
   else if (email.length > 254) errors.email = "Keep your email under 254 characters.";
 
-  if (!timeSink) errors.timeSink = "Tell us what takes the most time.";
+  if (!timeSink) errors.timeSink = "Tell us what makes this workflow painful today.";
   else if (timeSink.length > 500) errors.timeSink = "Keep your answer under 500 characters.";
 
   if (!PAYMENT_CHOICES.has(input.willingnessToPay)) {
@@ -40,6 +57,8 @@ export function createLeadRecord(input, options = {}) {
   const generatedId = globalThis.crypto?.randomUUID?.() ?? `lead_${Date.now()}`;
   return Object.freeze({
     id: options.id ?? generatedId,
+    workflowArea: input.workflowArea,
+    frequency: input.frequency,
     name: clean(input.name),
     email: clean(input.email).toLowerCase(),
     timeSink: clean(input.timeSink),
@@ -72,6 +91,8 @@ function encodeFormBody(record, formName) {
   return new URLSearchParams({
     "form-name": formName,
     id: record.id,
+    workflowArea: record.workflowArea,
+    frequency: record.frequency,
     name: record.name,
     email: record.email,
     timeSink: record.timeSink,
@@ -87,6 +108,8 @@ function emailPayload(record) {
     _template: "table",
     _replyto: record.email,
     id: record.id,
+    workflowArea: record.workflowArea,
+    frequency: record.frequency,
     name: record.name,
     email: record.email,
     timeSink: record.timeSink,

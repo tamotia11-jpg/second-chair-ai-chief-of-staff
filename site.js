@@ -5,6 +5,8 @@ document.documentElement.classList.add("js");
 function valuesFromForm(form) {
   const formData = new FormData(form);
   return Object.freeze({
+    workflowArea: formData.get("workflowArea"),
+    frequency: formData.get("frequency"),
     name: formData.get("name"),
     email: formData.get("email"),
     timeSink: formData.get("timeSink"),
@@ -51,7 +53,7 @@ function clearErrors(form) {
   });
 }
 
-function showErrors(form, errors) {
+function showErrors(form, errors, shouldFocus = true) {
   Object.entries(errors).forEach(([field, message]) => {
     const error = form.querySelector(`[data-error-for="${field}"]`);
     if (error) error.textContent = message;
@@ -62,7 +64,7 @@ function showErrors(form, errors) {
       control?.setAttribute("aria-invalid", "true");
     }
   });
-  form.querySelector("[aria-invalid='true']")?.focus();
+  if (shouldFocus) form.querySelector("[aria-invalid='true']")?.focus();
 }
 
 function successCopy(status) {
@@ -89,9 +91,80 @@ function setupForm() {
   if (!form || !statusRegion) return;
 
   const referralField = form.elements.namedItem("referral");
+  const steps = [...form.querySelectorAll(".form-step")];
+  const position = form.querySelector("#question-position");
+  const progress = form.querySelector("#progress-value");
   const params = new URLSearchParams(globalThis.location?.search ?? "");
   const referral = params.get("ref") ?? "";
+  let activeStep = 0;
   if (referralField instanceof HTMLInputElement) referralField.value = referral;
+
+  function setStep(index, shouldFocus = true) {
+    activeStep = Math.max(0, Math.min(index, steps.length - 1));
+    steps.forEach((step, stepIndex) => {
+      step.hidden = stepIndex !== activeStep;
+    });
+    if (position) position.textContent = `Question ${activeStep + 1} of ${steps.length}`;
+    if (progress) progress.style.width = `${((activeStep + 1) / steps.length) * 100}%`;
+    if (shouldFocus) {
+      globalThis.requestAnimationFrame(() => {
+        const selected = steps[activeStep].querySelector("input:checked");
+        const firstControl = steps[activeStep].querySelector("input, textarea, button");
+        (selected ?? firstControl)?.focus();
+      });
+    }
+  }
+
+  function errorsForStep(step) {
+    const field = step.dataset.step;
+    const errors = validateWaitlist(valuesFromForm(form));
+    return field && errors[field] ? { [field]: errors[field] } : {};
+  }
+
+  function continueFromCurrentStep() {
+    clearErrors(form);
+    const errors = errorsForStep(steps[activeStep]);
+    if (Object.keys(errors).length > 0) {
+      showErrors(form, errors);
+      return;
+    }
+    setStep(activeStep + 1);
+  }
+
+  form.querySelectorAll("[data-next]").forEach((button) => {
+    button.addEventListener("click", continueFromCurrentStep);
+  });
+
+  form.querySelectorAll("[data-back]").forEach((button) => {
+    button.addEventListener("click", () => {
+      clearErrors(form);
+      statusRegion.hidden = true;
+      setStep(activeStep - 1);
+    });
+  });
+
+  form.addEventListener("input", (event) => {
+    const field = event.target?.name;
+    if (!field) return;
+    const error = form.querySelector(`[data-error-for="${field}"]`);
+    if (error) error.textContent = "";
+    const control = form.elements.namedItem(field);
+    if (control instanceof RadioNodeList) {
+      [...control].forEach((radio) => radio.removeAttribute("aria-invalid"));
+    } else {
+      control?.removeAttribute("aria-invalid");
+    }
+  });
+
+  form.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" || event.shiftKey) return;
+    if (!(event.target instanceof HTMLInputElement)) return;
+    if (event.target.type === "radio" || activeStep === steps.length - 1) return;
+    event.preventDefault();
+    continueFromCurrentStep();
+  });
+
+  setStep(0, false);
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -99,6 +172,8 @@ function setupForm() {
     const values = valuesFromForm(form);
     const errors = validateWaitlist(values);
     if (Object.keys(errors).length > 0) {
+      const firstErrorStep = steps.findIndex((step) => errors[step.dataset.step]);
+      if (firstErrorStep >= 0) setStep(firstErrorStep, false);
       showErrors(form, errors);
       return;
     }
@@ -117,9 +192,11 @@ function setupForm() {
         storage: globalThis.localStorage,
       });
       const title = result.status === "saved-locally" ? "Almost there." : "Thanks — you’re on the list.";
+      form.hidden = true;
       setStatus(statusRegion, "success", title, successCopy(result.status));
       form.reset();
       if (referralField instanceof HTMLInputElement) referralField.value = referral;
+      setStep(0, false);
     } catch (error) {
       setStatus(statusRegion, "error", "That didn’t save.", error.message);
     } finally {
