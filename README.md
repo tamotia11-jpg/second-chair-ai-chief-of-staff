@@ -2,10 +2,12 @@
 
 Second Chair is a validation-stage, human-guided AI chief of staff for founder-led operating work.
 
-This repo now contains two surfaces:
+This legacy repository contains two surfaces:
 
-- a native macOS SwiftUI app built with SwiftPM;
-- the static GitHub Pages validation website.
+- an archived macOS SwiftUI prototype built with SwiftPM;
+- the production public validation website.
+
+The supported Second Chair macOS and iPhone/iPad clients live in the canonical `second-chair-kimi` repository. The prototype here is retained as history and is not a distribution source.
 
 ## macOS App
 
@@ -29,8 +31,10 @@ The Codex app Run button is wired through `.codex/environments/environment.toml`
 
 - `index.html` is the active validation landing page.
 - `styles.css`, `site.js`, and `app.js` provide the page styling and browser behavior.
-- `thank-you.html` handles the post-submit confirmation path.
-- `_headers`, `robots.txt`, and `favicon.svg` support the hosted static deployment.
+- `privacy.html`, `thank-you.html`, and `404.html` provide supporting public routes.
+- `server.mjs` serves an explicit static allowlist with production security headers and a health contract.
+- `sitemap.xml`, `llms.txt`, `robots.txt`, Open Graph metadata, and `og-second-chair.png` support discovery and social previews.
+- `_headers` remains a defense-in-depth declaration for static hosts; Railway uses the headers emitted by `server.mjs`.
 
 ## Safety Boundary
 
@@ -40,6 +44,11 @@ Second Chair remains in Step 1 validation. The macOS app uses Manus for chat, re
 
 The active public URL is `https://www.chair02.com/`.
 
-The static site is deployed to the Railway project and service `chair02-waitlist`.
-Production uploads must include `index.html`, `styles.css`, `site.js`, `app.js`,
-`thank-you.html`, and the supporting static assets from the repository root.
+The site is deployed to the Railway project and service `chair02-waitlist`.
+
+```bash
+npm test
+npm start
+```
+
+Railway uses `railway.json`, runs the Node 22 static server, and verifies `/healthz` before completing a deployment.

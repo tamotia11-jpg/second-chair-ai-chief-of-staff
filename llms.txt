@@ -1,0 +1,9 @@
+# Second Chair
+
+> Second Chair is a human-guided AI chief of staff validation pilot for founder-led teams.
+
+Canonical site: https://www.chair02.com/
+Contact: support@chair02.com
+Website privacy: https://www.chair02.com/privacy.html
+
+The pilot starts with one recurring operating workflow. Drafts remain subject to human review before anything external happens. The public website does not provide an autonomous agent endpoint, and its early-access form must not receive credentials or confidential records.
