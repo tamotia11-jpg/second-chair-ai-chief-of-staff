@@ -31,10 +31,19 @@ test("server applies real security headers and a real 404", async () => {
   assert.equal(home.status, 200);
   assert.equal(home.headers.get("x-frame-options"), "DENY");
   assert.match(home.headers.get("content-security-policy"), /frame-ancestors 'none'/);
+  assert.match(home.headers.get("content-security-policy"), /upgrade-insecure-requests/);
+  assert.equal(home.headers.get("referrer-policy"), "no-referrer");
+  assert.equal(home.headers.get("origin-agent-cluster"), "?1");
+  assert.equal(home.headers.get("x-permitted-cross-domain-policies"), "none");
+  assert.equal(
+    home.headers.get("strict-transport-security"),
+    "max-age=63072000; includeSubDomains; preload",
+  );
 
   const missing = await fetch(`${origin}/missing-page`);
   assert.equal(missing.status, 404);
   assert.match(await missing.text(), /That page stepped out/);
+  assert.equal(missing.headers.get("x-frame-options"), "DENY");
 });
 
 test("health contract and SEO discovery files are available", async () => {

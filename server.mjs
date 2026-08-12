@@ -33,14 +33,17 @@ const contentTypes = new Map([
 ]);
 
 const securityHeaders = Object.freeze({
-  "Content-Security-Policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co",
+  "Content-Security-Policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co; upgrade-insecure-requests",
   "Cross-Origin-Opener-Policy": "same-origin",
   "Cross-Origin-Resource-Policy": "same-origin",
+  "Origin-Agent-Cluster": "?1",
   "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=()",
-  "Referrer-Policy": "strict-origin-when-cross-origin",
-  "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+  "Referrer-Policy": "no-referrer",
+  "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
   "X-Content-Type-Options": "nosniff",
+  "X-DNS-Prefetch-Control": "off",
   "X-Frame-Options": "DENY",
+  "X-Permitted-Cross-Domain-Policies": "none",
 });
 
 export function createServer() {
