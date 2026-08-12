@@ -42,8 +42,15 @@ test("server applies real security headers and a real 404", async () => {
 
   const missing = await fetch(`${origin}/missing-page`);
   assert.equal(missing.status, 404);
-  assert.match(await missing.text(), /That page stepped out/);
+  const missingBody = await missing.text();
+  assert.match(missingBody, /That page isn’t on today’s agenda/);
+  assert.match(missingBody, /href="\/"/);
+  assert.match(missingBody, /href="\/#early-access"/);
   assert.equal(missing.headers.get("x-frame-options"), "DENY");
+
+  const direct404 = await fetch(`${origin}/404.html`);
+  assert.equal(direct404.status, 404);
+  assert.match(await direct404.text(), /Page check/);
 });
 
 test("health contract and SEO discovery files are available", async () => {

@@ -61,7 +61,7 @@ export function createServer() {
       }
 
       const file = routes.get(pathname);
-      const statusCode = file ? 200 : 404;
+      const statusCode = file && pathname !== "/404.html" ? 200 : 404;
       const selectedFile = file ?? "404.html";
       const body = await readFile(path.join(root, selectedFile));
       const extension = path.extname(selectedFile);
