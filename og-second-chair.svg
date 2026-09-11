@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Second Chair — managed AI operations</title>
+  <desc id="description">Second Chair builds and operates a tailored AI workforce around a growing business.</desc>
+  <rect width="1200" height="630" fill="#07111f"/>
+  <path d="M0 92H1200M0 538H1200" stroke="#f8f4eb" stroke-opacity=".12"/>
+  <path d="M760 92V538" stroke="#f8f4eb" stroke-opacity=".12"/>
+  <text x="72" y="62" fill="#f8f4eb" font-family="Arial, sans-serif" font-size="24" font-weight="700">Second Chair<tspan fill="#ff684f">.</tspan></text>
+  <rect x="72" y="132" width="350" height="38" rx="19" fill="#ff684f" fill-opacity=".08" stroke="#ff684f" stroke-opacity=".55"/>
+  <circle cx="94" cy="151" r="5" fill="#92efc7"/>
+  <text x="112" y="158" fill="#ffd4cb" font-family="Arial, sans-serif" font-size="17" font-weight="600">MANAGED AI OPERATIONS</text>
+  <text x="72" y="244" fill="#f8f4eb" font-family="Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="-2">Build an AI workforce</text>
+  <text x="72" y="310" fill="#f8f4eb" font-family="Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="-2">around the business</text>
+  <text x="72" y="376" fill="#f8f4eb" font-family="Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="-2">you already run<tspan fill="#ff684f">.</tspan></text>
+  <text x="72" y="438" fill="#aeb9c7" font-family="Arial, sans-serif" font-size="22">Designed, integrated, operated, and improved with you.</text>
+  <rect x="802" y="138" width="326" height="338" rx="20" fill="#0e1c2d" stroke="#f8f4eb" stroke-opacity=".14"/>
+  <text x="834" y="181" fill="#92efc7" font-family="Arial, sans-serif" font-size="15" font-weight="700">●  MANAGED LIVE</text>
+  <text x="834" y="226" fill="#f8f4eb" font-family="Arial, sans-serif" font-size="27" font-weight="700">Operating pulse</text>
+  <line x1="834" y1="248" x2="1096" y2="248" stroke="#f8f4eb" stroke-opacity=".12"/>
+  <text x="834" y="292" fill="#aeb9c7" font-family="Arial, sans-serif" font-size="16">SALES</text>
+  <text x="1062" y="292" fill="#f8f4eb" font-family="Arial, sans-serif" font-size="26" font-weight="700">12</text>
+  <text x="834" y="349" fill="#aeb9c7" font-family="Arial, sans-serif" font-size="16">SUPPORT</text>
+  <text x="1062" y="349" fill="#f8f4eb" font-family="Arial, sans-serif" font-size="26" font-weight="700">08</text>
+  <text x="834" y="406" fill="#aeb9c7" font-family="Arial, sans-serif" font-size="16">EXECUTIVE OPS</text>
+  <text x="1062" y="406" fill="#f8f4eb" font-family="Arial, sans-serif" font-size="26" font-weight="700">03</text>
+  <rect x="834" y="432" width="262" height="2" fill="#ff684f"/>
+  <text x="72" y="582" fill="#f8f4eb" fill-opacity=".52" font-family="Arial, sans-serif" font-size="16" font-weight="600">UNDERSTAND → DESIGN → PILOT → OPERATE → EXPAND</text>
+</svg>

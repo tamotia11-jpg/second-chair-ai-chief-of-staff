@@ -104,7 +104,7 @@ function encodeFormBody(record, formName) {
 
 function emailPayload(record) {
   return Object.freeze({
-    _subject: "New Second Chair early access request",
+    _subject: "New Second Chair pilot conversation",
     _template: "table",
     _replyto: record.email,
     id: record.id,
@@ -127,7 +127,7 @@ export async function submitLead(record, options = {}) {
   }
 
   const fetcher = options.fetcher ?? globalThis.fetch;
-  const formName = options.formName ?? "early-access";
+  const formName = options.formName ?? "pilot-conversation";
   const usesEncodedForm = options.format === "form";
   const usesEmailService = options.format === "email";
   const response = await fetcher(endpoint, {

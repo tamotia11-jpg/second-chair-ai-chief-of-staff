@@ -1,4 +1,4 @@
-import { createLeadRecord, submitLead, validateWaitlist } from "./app.js?v=20260801-guided-form";
+import { createLeadRecord, submitLead, validateWaitlist } from "./app.js?v=20260826-pilot";
 
 document.documentElement.classList.add("js");
 
@@ -37,7 +37,7 @@ function submissionOptions(form) {
     return Object.freeze({
       endpoint: "/",
       format: "form",
-      formName: form.getAttribute("name") ?? "early-access",
+      formName: form.getAttribute("name") ?? "pilot-conversation",
     });
   }
   if (mode === "local") return Object.freeze({ endpoint: "" });
@@ -68,10 +68,10 @@ function showErrors(form, errors, shouldFocus = true) {
 }
 
 function successCopy(status) {
-  if (status === "already-joined") return "You’re already on the list. We’ll be in touch with pilot details.";
-  if (status === "emailed") return "Your request was sent by email. We’ll be in touch with the next steps and concierge pilot details.";
-  if (status === "saved-locally") return "Saved in this browser for local testing. Use the public website to send the request by email.";
-  return "You’re on the list. We’ll be in touch with the next steps and concierge pilot details.";
+  if (status === "already-joined") return "We already have your details. We’ll be in touch about the workflow you shared.";
+  if (status === "emailed") return "Your pilot conversation request was sent. We’ll be in touch about the next step.";
+  if (status === "saved-locally") return "Saved in this browser for local testing. Use the public site to send a pilot conversation request.";
+  return "Your pilot conversation request was received. We’ll be in touch about the next step.";
 }
 
 function setStatus(region, modifier, title, message) {
@@ -105,7 +105,7 @@ function setupForm() {
       step.hidden = stepIndex !== activeStep;
     });
     if (position) position.textContent = `Question ${activeStep + 1} of ${steps.length}`;
-    if (progress) progress.style.width = `${((activeStep + 1) / steps.length) * 100}%`;
+    if (progress) progress.style.setProperty("--progress", `${(activeStep + 1) / steps.length}`);
     if (shouldFocus) {
       globalThis.requestAnimationFrame(() => {
         const selected = steps[activeStep].querySelector("input:checked");
@@ -181,7 +181,7 @@ function setupForm() {
     const button = form.querySelector("button[type='submit']");
     const originalLabel = button.textContent;
     button.disabled = true;
-    button.textContent = "Saving…";
+    button.textContent = "Sending…";
     statusRegion.hidden = true;
 
     const record = createLeadRecord(values, { referral: params.get("ref") ?? "" });
@@ -191,7 +191,7 @@ function setupForm() {
         ...submissionOptions(form),
         storage: globalThis.localStorage,
       });
-      const title = result.status === "saved-locally" ? "Almost there." : "Thanks — you’re on the list.";
+      const title = result.status === "saved-locally" ? "Almost there." : "Thanks — we have your note.";
       form.hidden = true;
       setStatus(statusRegion, "success", title, successCopy(result.status));
       form.reset();
