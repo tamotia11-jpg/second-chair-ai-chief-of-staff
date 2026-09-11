@@ -1,9 +1,20 @@
 # Second Chair
 
-> Second Chair is a human-guided AI chief of staff validation pilot for founder-led teams.
+> Second Chair is a managed AI operations company for growing businesses. It designs, deploys, and operates a tailored AI workforce around the way each customer actually works.
 
-Canonical site: https://www.chair02.com/
-Contact: support@chair02.com
-Website privacy: https://www.chair02.com/privacy.html
+## Resources
 
-The pilot starts with one recurring operating workflow. Drafts remain subject to human review before anything external happens. The public website does not provide an autonomous agent endpoint, and its early-access form must not receive credentials or confidential records.
+- [Canonical site](https://www.chair02.com/)
+- [Managed AI operations services](https://www.chair02.com/what-we-do)
+- [How Second Chair works](https://www.chair02.com/how-it-works)
+- [AI workforce capabilities](https://www.chair02.com/ai-workforce)
+- [Human control model](https://www.chair02.com/control)
+- [Workflow pilots](https://www.chair02.com/workflows)
+- [Operating notes](https://www.chair02.com/insights)
+- [Contact](mailto:support@chair02.com)
+- [Website privacy](https://www.chair02.com/privacy)
+- [Website terms](https://www.chair02.com/terms)
+
+Second Chair understands the business, creates an AI operations plan, configures specialist capabilities on the same Second Chair platform, connects them to approved systems, and stays to operate, maintain, improve, and expand the deployment. A focused paid pilot is the low-risk entry point, not the product. The control model follows customer-defined policies, with human approval where consequence or uncertainty requires it.
+
+The public website does not offer checkout, public pricing, a self-service automation builder, or an unrestricted automation endpoint. Its contact form must not receive credentials, customer records, confidential company information, or private financial data.

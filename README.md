@@ -1,6 +1,6 @@
 # Second Chair
 
-Second Chair is a validation-stage, human-guided AI chief of staff for founder-led operating work.
+Second Chair is a validation-stage managed AI operations company for growing businesses. It designs, deploys, and operates a tailored AI workforce around each customer’s existing operation.
 
 This legacy repository contains two surfaces:
 
@@ -33,7 +33,7 @@ The Codex app Run button is wired through `.codex/environments/environment.toml`
 - `styles.css`, `site.js`, and `app.js` provide the page styling and browser behavior.
 - `privacy.html`, `thank-you.html`, and `404.html` provide supporting public routes.
 - `server.mjs` serves an explicit static allowlist with production security headers and a health contract.
-- `sitemap.xml`, `llms.txt`, `robots.txt`, Open Graph metadata, and `og-second-chair.png` support discovery and social previews.
+- `sitemap.xml`, `llms.txt`, `robots.txt`, Open Graph metadata, and `og-second-chair.svg` support discovery and social previews.
 - `_headers` remains a defense-in-depth declaration for static hosts; Railway uses the headers emitted by `server.mjs`.
 
 ## Safety Boundary
@@ -52,3 +52,5 @@ npm start
 ```
 
 Railway uses `railway.json`, runs the Node 22 static server, and verifies `/healthz` before completing a deployment.
+
+Pilot-conversation submissions stay on the same origin. Before enabling them in Railway, set the private `FORM_SUBMIT_ENDPOINT` service variable to the approved delivery endpoint; without it, the server safely returns `503` and does not accept or store a lead. Do not place that value in browser code, repository files, or client-visible deployment settings.
